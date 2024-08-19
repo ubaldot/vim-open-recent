@@ -19,9 +19,8 @@ def IsReadable(idx: number, val: string): bool
     return filereadable(expand(val))
 enddef
 
-var readables = filter(copy(v:oldfiles), IsReadable)
-
 def OpenRecent()
+  var readables = filter(copy(v:oldfiles), IsReadable)
   popup_menu(readables, {
     title: " Recently opened files ('q' = exit): ",
     line: &lines,
