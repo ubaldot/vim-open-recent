@@ -15,25 +15,4 @@ If you want to change directory upon selection of a recently opened file, set
 If you don't want to show the popup when entering Vim, set
 `g:vim_open_at_empty_startup = false`.
 
-> [!TIP]
->
-> You may want at list of recently opened files displayed at Vim startup. If
-> so, add the following lines in your `.vimrc`.
->
-> ```
-> def ShowRecentFiles()
->   var readable_args = filter(copy(v:argv[1 : ]), (_, x) =>
->          !empty(x) && filereadable(x)
->         )
->   if len(readable_args) == 0
->     execute('OpenRecent')
->   endif
-> enddef
->
-> augroup OpenRecent
->     autocmd!
->     autocmd VimEnter * ShowRecentFiles()
-> augroup END
-> ```
-
 This plugin is written in Vim9.
