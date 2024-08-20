@@ -42,4 +42,4 @@ If you want to change directory upon selection of a recently opened file, set
 > augroup END
 > ```
 
-Written in Vim9.
+This plugin is written in Vim9.
