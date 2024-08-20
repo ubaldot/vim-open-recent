@@ -29,15 +29,17 @@ def OpenRecent()
     col: &columns,
     posinvert: false,
     callback: (_, idx) => {
-      execute($'edit {readables[idx - 1]}')
-      if change_dir
-        execute($"cd {expand('%:h')}")
+      if idx != -1
+        execute($'edit {readables[idx - 1]}')
+        if change_dir
+          execute($"cd {expand('%:h')}")
+        endif
       endif
       },
     filter: (id, key) => {
        # Handle shortcuts
        if key == 'q'
-        popup_close(id, 1)
+        popup_close(id, -1)
        else
           return popup_filter_menu(id, key)
        endif
