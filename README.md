@@ -14,7 +14,9 @@ If you want to change directory upon selection of a recently opened file, set
 
 > [!TIP]
 >
-> It may handy to have the following in your `.vimrc` file:
+> It may handy to have the following lines in your `.vimrc`. In that way, if
+> you launch Vim with no file as argument, you get automatically displayed a
+> list of recently opened files.
 >
 > ```
 > def OpenRecentNicer()
