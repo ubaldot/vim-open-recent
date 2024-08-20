@@ -18,27 +18,18 @@ If you want to change directory upon selection of a recently opened file, set
 > so, add the following lines in your `.vimrc`.
 >
 > ```
-> def OpenRecentNicer()
->     if len(v:argv) > 1
->       # Iterate through the command-line arguments
->       for arg in v:argv[1 : ]
->           # Check if the argument is not an option (doesn't start with '-')
->           if arg[0] !=# '-'
->               # Check if the argument is a valid file. If so, don't open recent
->               # files.
->               if filereadable(arg)
->                   return
->               endif
->           endif
->       endfor
->     endif
->
+> def ShowRecentFiles()
+>   var readable_args = filter(copy(v:argv[1 : ]), (_, x) =>
+>          !empty(x) && filereadable(x)
+>         )
+>   if len(readable_args) == 0
 >     execute('OpenRecent')
+>   endif
 > enddef
 >
 > augroup OpenRecent
 >     autocmd!
->     autocmd VimEnter * OpenRecentNicer()
+>     autocmd VimEnter * ShowRecentFiles()
 > augroup END
 > ```
 
