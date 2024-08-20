@@ -15,6 +15,8 @@ if exists('g:vim_open_recent_loaded')
 endif
 g:vim_open_recent_loaded = true
 
+var change_dir = exists('g:vim_open_change_dir') ? g:vim_open_change_dir : false
+
 def IsReadable(idx: number, val: string): bool
     return filereadable(expand(val))
 enddef
@@ -28,6 +30,9 @@ def OpenRecent()
     posinvert: false,
     callback: (_, idx) => {
       execute($'edit {readables[idx - 1]}')
+      if change_dir
+        execute($"cd {expand('%:h')}")
+      endif
       },
     filter: (id, key) => {
        # Handle shortcuts
