@@ -16,6 +16,7 @@ endif
 g:vim_open_recent_loaded = true
 
 var change_dir = exists('g:vim_open_change_dir') ? g:vim_open_change_dir : false
+var open_at_empty_startup = exists('g:vim_open_at_empty_startup') ? g:vim_open_at_empty_startup : true
 
 def IsReadable(idx: number, val: string): bool
     return filereadable(expand(val))
@@ -52,3 +53,20 @@ def OpenRecent()
 enddef
 
 command! OpenRecent OpenRecent()
+
+
+if open_at_empty_startup
+  def ShowRecentFiles()
+    var readable_args = copy(v:argv[1 : ])->filter((_, x) =>
+           !empty(x) && filereadable(x)
+          )
+    if len(readable_args) == 0
+      execute('OpenRecent')
+    endif
+  enddef
+
+  augroup OpenRecent
+      autocmd!
+      autocmd VimEnter * ShowRecentFiles()
+  augroup END
+endif

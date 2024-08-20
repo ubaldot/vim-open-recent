@@ -12,6 +12,9 @@ one command `:OpenRecent`.
 If you want to change directory upon selection of a recently opened file, set
 `g:vim_open_change_dir = true`.
 
+If you don't want to show the popup when entering Vim, set
+`g:vim_open_at_empty_startup = false`.
+
 > [!TIP]
 >
 > You may want at list of recently opened files displayed at Vim startup. If
