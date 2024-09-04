@@ -25,7 +25,7 @@ enddef
 def OpenRecent()
   var readables = filter(copy(v:oldfiles), IsReadable)
   popup_menu(readables, {
-    title: " Recently opened files ('q' = exit): ",
+    title: " Recently opened files: ",
     line: &lines,
     col: &columns,
     posinvert: false,
@@ -39,7 +39,7 @@ def OpenRecent()
       },
     filter: (id, key) => {
        # Handle shortcuts
-       if key == 'q'
+       if key == '<\esc>'
         popup_close(id, -1)
        else
           return popup_filter_menu(id, key)
