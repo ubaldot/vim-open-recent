@@ -1,3 +1,5 @@
+## OBS! A better version of this plugin is now included in vim-poptools!!! 
+
 # vim-open-recent
 
 Open recent files from a popup menu.
